@@ -30,7 +30,7 @@ pipeline {
         }
         stage('Build docker image') {
             steps {
-                sh "docker build -t 'sharmasahil95/devops-test'"
+                sh "docker build -t 'sharmasahil95/devops-test' ."
             }
         }
     }
