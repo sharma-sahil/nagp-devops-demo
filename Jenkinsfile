@@ -16,15 +16,17 @@ pipeline {
         }
         stage('Push to artifactory') {
             steps {
-                def server = Artifactory.server '123456789@artifactory'
-                def buildInfo = Artifactory.newBuildInfo()
-                buildInfo.env.capture = true
-                buildInfo.env.collect()
-                def rtMaven = Artifactory.newMavenBuild()
-                rtMaven.tool = 'M3'
-                rtMaven.deployer releaseRepo: 'workshop', snapshotRepo:'workshop', server: server
-                rtMaven.run pom: 'pom.xml', goals: 'clean install', buildInfo: buildInfo
-                server.publishBuildInfo buildInfo
+                script{
+                    def server = Artifactory.server '123456789@artifactory'
+                    def buildInfo = Artifactory.newBuildInfo()
+                    buildInfo.env.capture = true
+                    buildInfo.env.collect()
+                    def rtMaven = Artifactory.newMavenBuild()
+                    rtMaven.tool = 'M3'
+                    rtMaven.deployer releaseRepo: 'workshop', snapshotRepo:'workshop', server: server
+                    rtMaven.run pom: 'pom.xml', goals: 'clean install', buildInfo: buildInfo
+                    server.publishBuildInfo buildInfo
+                }
             }
         }
         stage('Deploy') {
