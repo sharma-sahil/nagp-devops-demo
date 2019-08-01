@@ -1,5 +1,5 @@
 pipeline {
-    agent { dockerfile true }
+    agent any
     stages {
     	stage('Checkout'){
     		steps {
@@ -30,7 +30,7 @@ pipeline {
         }
         stage('Build docker image') {
             steps {
-                sh "docker build -t 'sahil-sharma-devops' Dockerfile "
+                sh "docker build -t 'sharmasahil95/devops-test' Dockerfile "
             }
         }
     }
