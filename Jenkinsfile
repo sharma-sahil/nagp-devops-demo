@@ -11,7 +11,7 @@ pipeline {
     
         stage('Build') {
             steps {
-                echo 'Building..'
+                sh "/usr/local/src/apache-maven/bin/mvn clean install"
             }
         }
         stage('Test') {
