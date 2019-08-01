@@ -29,9 +29,9 @@ pipeline {
                 }
             }
         }
-        stage('Deploy') {
+        stage('Build docker image') {
             steps {
-                echo 'Deploying....'
+                sh "docker build --build-args=target/*.jar"
             }
         }
     }
