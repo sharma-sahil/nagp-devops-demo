@@ -31,7 +31,7 @@ pipeline {
         }
         stage('Build docker image') {
             steps {
-                sh "docker build --build-args=target/*.jar"
+                sh "docker build -t sharma-sahil-1.0"
             }
         }
     }
